@@ -37,11 +37,11 @@ function fromUrlObj2UrlQuery() {
     for (let i=0;i<UrlObjElements.length;i++)
     {
         UrlObjElements.item(i).addEventListener('blur', (e) => {      
-            console.log(e.explicitOriginalTarget.id);    
+            console.log(e.srcElement.id);    
             let UrlObjCompressedString = fromStates2UrlObjString('UrlObj');
             //document.getElementById('UrlQueryInput').value = UrlObjCompressedString;
             //window.history.pushState({UrlObjCompressedString},"Results for `Cats`",`?q=${UrlObjCompressedString}`);
-            window.history.pushState({id: e.explicitOriginalTarget.id, UrlObjCompressedString: UrlObjCompressedString},"Results for `Cats`",`?q=${UrlObjCompressedString}`);
+            window.history.pushState({id: e.srcElement.id, UrlObjCompressedString: UrlObjCompressedString},"Results for `Cats`",`?q=${UrlObjCompressedString}`);
         })
     }  
 }
