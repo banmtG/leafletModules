@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaflet Google Places Autocomplete</title>
+   <!-- ONLINE -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+   crossorigin="anonymous"></script>
+
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <link href="./css/main.css" rel="stylesheet">
+    <script type="text/javascript" src="./js/leaflet-gplaces-autocomplete.js"></script>
+    <link href="./css/leaflet-gplaces-autocomplete.css" rel="stylesheet">
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpkmw5Z6NGdLL9MbPsywvWaMHHPVUH_lI&libraries=places"></script>
+
+</head>
+<body>
+<div id="header">Some text</div>
+<div id="map" style="position: relative; top: 0; left: 0; width: 100%; height:90vh;"></div>
+
+	<script type="text/javascript">
+            // init map
+            var map = L.map('map').setView([51.505, -0.09], 13);
+
+            var tiles =  L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+                maxZoom: 19,
+                subdomains:['mt0']
+            }).addTo(map);
+
+            map.addLayer(tiles);
+
+            new L.Control.GPlaceAutocomplete({
+                callback: function(place){
+                    var loc = place.geometry.location;
+                    map.panTo([loc.lat(), loc.lng()]);
+                    map.setZoom(18);
+                }
+            }).addTo(map);
+
+
+            $('.leaflet-gac-wrapper').appendTo("#header");
+	</script>
+
+</body>
+</html>
