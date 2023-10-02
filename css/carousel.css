@@ -1,0 +1,36 @@
+#carousel {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);  
+    overflow: auto;
+    height: calc(100vh - 120px);
+}
+
+#carousel ::-webkit-scrollbar{
+    display: none;
+  }
+
+#carousel  {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.card_Container {
+    border: 1px grey dotted;
+    height: auto;
+    padding: 5px;
+    display: grid;
+}
+
+.card_Img{
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+.card_Title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.card_Info {
+    font-size: 1.2rem;
+    font-weight: 300;
+}

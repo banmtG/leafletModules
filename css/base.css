@@ -14,6 +14,14 @@
     font-size: inherit;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 html {
     font-size: 80%;
     line-height: 1.6em;
@@ -22,8 +30,7 @@ html {
 }
 
 body {
-    position:relative;
-    margin: 10px;
+    position:relative;  
     font: 1rem/1.5 'Roboto Serif', sans-serif;
 }
 
@@ -107,3 +114,15 @@ body::-webkit-scrollbar {
     100% { transform: rotate(360deg); }
 }
 
+
+body::-webkit-scrollbar{
+    display: none;
+  }
+
+body {
+-ms-overflow-style: none;
+}
+
+html {
+    scrollbar-width: none;
+}
