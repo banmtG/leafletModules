@@ -6,6 +6,8 @@
     --border-color: #EBEBEB;
     --green-color: #059136;
     --blue-color: #215B9D;
+    --scrollbar-color: #9D9D9D;
+    --scrollbar-bgColor: #E0E0E0;
 }
 
 /*  */
@@ -114,7 +116,7 @@ body::-webkit-scrollbar {
     100% { transform: rotate(360deg); }
 }
 
-
+/* //Hide Scrollbar
 body::-webkit-scrollbar{
     display: none;
   }
@@ -125,4 +127,24 @@ body {
 
 html {
     scrollbar-width: none;
-}
+} */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-color) var(--scrollbar-bgColor);
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-bgColor);
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-color);
+    border-radius: 20px;
+    border: 2px solid var(--scrollbar-bgColor);
+  }

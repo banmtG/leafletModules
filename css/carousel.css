@@ -5,14 +5,14 @@
     height: calc(100vh - 120px);
 }
 
-#carousel ::-webkit-scrollbar{
-    display: none;
-  }
+/* #carousel ::-webkit-scrollbar {
+   display: none; 
+  } */
 
-#carousel  {
+/* #carousel  {
     -ms-overflow-style: none;
     scrollbar-width: none;
-}
+}  */
 
 .card_Container {
     border: 1px grey dotted;

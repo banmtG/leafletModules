@@ -33,3 +33,8 @@ function autoAdjustCardsOnResize() {
     }
 }
    
+
+// $(document).ready(function(){
+//     $('.scrollbar-inner').scrollbar();
+//     console.log(`vao ready`);
+// });
