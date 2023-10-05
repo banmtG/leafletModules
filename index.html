@@ -14,9 +14,6 @@
         <!-- Jquery select2  -->
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        <!-- Jquery scrollBar  -->
-        <link href="./js/jquery/jquery.scrollbar.css" rel="stylesheet">
-        <script type="text/javascript" src="./js/jquery/jquery.scrollbar.js"></script>
 
         <!-- GRID    -->
         <script src="https://unpkg.com/split-grid/dist/split-grid.js"></script>
@@ -39,10 +36,15 @@
 </head>
 <body>
     <div id="main-grid-container">
-        <div id="header">an Icon</div>
+        <div id="header">
+            <div id="messageLog"></div>
+            <div class="btn" id="SelectCardBtn">Select Card</div>
+            <div class="btn" id="RemoveTopCardsBtn">Remove top cards</div>
+            <div class="btn" id="showCarouselChild">showCarouselChild</div>
+        </div>
         <div id="content-grid">
-            <div id="map">the map</div>
-            <div class="gutter-col gutter-col-1"><i class="fa-solid fa-circle"></i></div>
+            <div id="map"></div>
+            <!-- <div class="gutter-col gutter-col-1"><i class="fa-solid fa-circle"></i></div> -->
             <div id="carousel">
                 <template id="card_Tmpl">
                     <div class="card_Container scrollbar-inner">

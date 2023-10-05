@@ -1,3 +1,4 @@
+
 :root {
     --theme-color: #f53e2d;
     --white-color: #fff;
@@ -32,6 +33,7 @@ html {
 }
 
 body {
+
     position:relative;  
     font: 1rem/1.5 'Roboto Serif', sans-serif;
 }
@@ -51,8 +53,8 @@ body::-webkit-scrollbar {
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    padding: 8px 30px;
-    font-size: 1.6rem;
+    padding: 8px 5px;
+    font-size: 1.2rem;
     background-color: rgba(0,0,0,0.1);
     border-radius: 2px;
     user-select: none;

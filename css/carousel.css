@@ -1,8 +1,7 @@
 #carousel {
     display: grid;
     grid-template-columns: repeat(1, 1fr);  
-    overflow: auto;
-    height: calc(100vh - 120px);
+    overflow: auto;    
 }
 
 /* #carousel ::-webkit-scrollbar {
@@ -15,6 +14,7 @@
 }  */
 
 .card_Container {
+    width: 100%;
     border: 1px grey dotted;
     height: auto;
     padding: 5px;
