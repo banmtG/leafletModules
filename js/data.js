@@ -2820,6 +2820,6 @@ if (queryConditionArray.indexOf(val.id)>0) {
     }
 });
 
-console.log(queriedDataArray);
+//console.log(queriedDataArray);
 
 // console.log(`queriedDataArray`,queriedDataArray);

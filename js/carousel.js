@@ -59,7 +59,7 @@ RemoveTopCardsBtn.addEventListener('click', (e)=>{
 function loadForBeginCarousel()
 {
     let aCssString = carousel.style['grid-template-columns'].toString();
-    let columnNum = 3*parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
+    let columnNum = 1*parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
    // console.log(`columnNum`, columnNum);
     let card_Container=document.getElementsByClassName('card_Container');
    // console.log(`columnNum`,columnNum);
@@ -74,12 +74,12 @@ function loadForBeginCarousel()
         }
         let htmlArray = [];
         let aHtmlString = "";
-        console.log(`firstItemIndex`,firstItemIndex);
-        console.log(`columnNum`,columnNum);
+      //  console.log(`firstItemIndex`,firstItemIndex);
+      //  console.log(`columnNum`,columnNum);
         for (let i=columnNum;i>0;i--)
         {
             let item=firstItemIndex-i;
-            console.log(item);
+           // console.log(item);
             aHtmlString = aHtmlString + `<div class="card_Container">
                                 <img src="./img/${queriedDataArray[item].image}.jpg" loading="lazy" alt="a Photo" class="card_Img">
                                 <div class="card_Title">${queriedDataArray[item].id}</div>
@@ -96,7 +96,7 @@ function loadForBeginCarousel()
 function loadForEndCarousel()
 {
     let aCssString = carousel.style['grid-template-columns'].toString();
-    let columnNum = 3*parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
+    let columnNum = 1*parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
     console.log(`columnNum`, columnNum);
     let card_Container=document.getElementsByClassName('card_Container');
     console.log(`columnNum`,columnNum);
@@ -136,22 +136,28 @@ function loadForEndCarousel()
 }
 
 carousel.addEventListener("scrollend", (e) => {
+    console.log(e);
     let addSwitch=0;
-    
+    let theHeight = $("#carousel").height();
+    // let theHeight
+     console.log(`scrollHeight`, carousel.scrollHeight);
+     console.log(`scrollTop`, carousel.scrollTop);
+     console.log(`theHeight`,theHeight);
+      
+    let totalValue = theHeight + carousel.scrollTop;
+     console.log(`totalValue`,totalValue);
+     
     if (document.getElementById("carousel").scrollTop==0) {
         var myElement = carousel.firstChild;    
         loadForBeginCarousel();
         myElement.scrollIntoView();
         addSwitch = 1;
-    }
-    let theHeight = $("#carousel").height();
-   // let theHeight
-   //console.log(carousel.scrollHeight);
-   // console.log(carousel.scrollTop);
-    //console.log(theHeight);
-    let totalValue = theHeight + carousel.scrollTop;
-   // console.log(totalValue);
-    if (carousel.scrollHeight==totalValue) {
+    }  
+    let tuyetdoi = Math.abs(totalValue - carousel.scrollHeight);
+    console.log(`tuyet doi == `, tuyetdoi);
+    if (tuyetdoi<0.5) {
+        console.log(`vaof loadForEndCarousel`);
+       
         var myElement = carousel.lastChild;    
         loadForEndCarousel();
         addSwitch = 1;
@@ -177,7 +183,7 @@ carousel.addEventListener("scrollend", (e) => {
     //     myElement.scrollIntoView();
     // }
     console.log(`scroll end`,addSwitch);
-    console.log(`document.getElementById("carousel").scrollTop`,document.getElementById("carousel").scrollTop);
+    //console.log(`document.getElementById("carousel").scrollTop`,document.getElementById("carousel").scrollTop);
    //console.log(document.getElementById("carousel").scrollTop);
 })
 
@@ -191,7 +197,7 @@ function get20Items(queriedDataArray,middleItemID)
     {
         if (queriedDataArray[index].id==middleItemID) 
         {
-            console.log(index);
+           // console.log(index);
             firstItemIndex = index - 10;
             lastItemIndex = index + 10;
             if (firstItemIndex<0) {
@@ -219,7 +225,7 @@ function fromQueried2Carousel(sourceArray,item_ID) {
     carousel.innerHTML="";
     let htmlArray = [];
     let queriedDataArray=get20Items(sourceArray,item_ID);
-    console.log(queriedDataArray);
+   // console.log(queriedDataArray);
     for (let item=0;item<queriedDataArray.length;item++)
     {
         htmlArray.push(`<div class="card_Container">
@@ -232,7 +238,7 @@ function fromQueried2Carousel(sourceArray,item_ID) {
     }
    // console.log(htmlArray.join(""));
     carousel.innerHTML = htmlArray.join("");
-    console.log(carousel.innerHTML);
+   // console.log(carousel.innerHTML);
     //highLightSelection (item_ID);  
     highLightSelection (item_ID);  
     //setTimeout($('#SelectCardBtn').trigger('click'),2000);
@@ -242,7 +248,7 @@ function fromQueried2Carousel(sourceArray,item_ID) {
         console.log(e.currentTarget.children[1]);
         var clicked_ID =  e.currentTarget.children[1].childNodes[0].data;
         $('#messageLog').html(queriedDataArray.length + " " + clicked_ID);
-        console.log(`click`,clicked_ID);
+        //console.log(`click`,clicked_ID);
         // apply background to seleted ID        
         highLightSelection (clicked_ID);  
 
@@ -261,7 +267,7 @@ function highLightSelection (id) {
     console.log(id);
     $('.card_Container').css('background',"");
     let element_withID = findCardElement(id);
-    element_withID.style.background = `rgba(151, 151, 151, .9)  `;
+    element_withID.style.background = `rgba(151, 151, 151, .4)  `;
 }
     // let aTarget;
     // aTarget = document.getElementsByClassName('card_Container');
