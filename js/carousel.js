@@ -141,6 +141,13 @@ carousel.addEventListener('scroll', (e) => {
 
 });
 
+$('#carousel').on('scrollend', function() {
+    // handle event 
+    console.log(`jquery onscroll `);
+    $('#messageLog').html(`jquery onscroll end ${$('#carousel').scrollTop()}`);
+
+});
+
 
 carousel.addEventListener("scrollend", (e) => {
     console.log(oldScrollTop);
