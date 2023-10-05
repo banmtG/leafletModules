@@ -110,11 +110,14 @@ $('#carousel').on('scrollend', function() {
 });
 
 
-carousel.addEventListener("scrollend", (e) => {
+carousel.addEventListener("scroll", (e) => {
     console.log(oldScrollTop);
     console.log(carousel.scrollTop);
+   
+    if (oldScrollTop>carousel.scrollTop) scrollDirection='up';
+    if (oldScrollTop<carousel.scrollTop) scrollDirection='down';
     oldScrollTop=carousel.scrollTop;
-    console.log(e);
+    console.log(scrollDirection);
     let addSwitch=0;
     let theHeight = $("#carousel").height();
     // let theHeight
@@ -125,7 +128,8 @@ carousel.addEventListener("scrollend", (e) => {
     let totalValue = theHeight + carousel.scrollTop;
      console.log(`totalValue`,totalValue);
      
-    if (document.getElementById("carousel").scrollTop<100) {
+    if (document.getElementById("carousel").scrollTop<100 && scrollDirection=='up') {
+        
         var myElement = carousel.firstChild;    
         loadForBeginCarousel();
         myElement.scrollIntoView();
@@ -133,7 +137,7 @@ carousel.addEventListener("scrollend", (e) => {
     }  
     let tuyetdoi = Math.abs(totalValue - carousel.scrollHeight);
     console.log(`tuyet doi == `, tuyetdoi);
-    if (tuyetdoi<200) {
+    if (tuyetdoi<200 && scrollDirection=='down') {
         console.log(`vaof loadForEndCarousel`);
        
         var myElement = carousel.lastChild;    
@@ -247,7 +251,7 @@ function fromQueried2Carousel(sourceArray,item_ID) {
         openFullscreen();  
     });
 }
-setTimeout(elem.requestFullscreen(),5000);
+
 $(document).ready(function() {
    // openFullscreen();
     $('#SelectCardBtn').trigger('click');
