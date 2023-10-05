@@ -3,6 +3,7 @@ let theScrollID;
 let SelectCardBtn= document.getElementById('SelectCardBtn');
 let RemoveTopCardsBtn = document.getElementById('RemoveTopCardsBtn');
 let showCarouselChild = document.getElementById('showCarouselChild');
+var elem = document.documentElement;
 
 showCarouselChild.addEventListener('click', (e)=>{
     console.log(carousel.children);
@@ -15,46 +16,6 @@ let firstItemIndex,lastItemIndex;
 
 theScrollID=middleItemID;
 
-RemoveTopCardsBtn.addEventListener('click', (e)=>{
-    loadForBeginCarousel();
-    var position = document.getElementById('carousel').scrollTop;
-    console.log(`position 1`, position);
-
-   let card_Container=document.getElementsByClassName('card_Container');
-   //console.log(card_Container);
-   for (let i=0;i<6;i++)
-   {
-    carousel.removeChild(card_Container[card_Container.length-1]);
-   }
-  // console.log(card_Container);
-  // console.log(card_Container.length);
-   let htmlArray = [];
-   let aString = "";
-//    let aFrom = peg+0;
-//    let aTo = peg+3;
-   for (let i=0;i<6;i++)
-    {
-        let item=19-i;
-       // console.log(item);
-        aString = aString + `<div class="card_Container">
-                            <img src="./img/${queriedDataArray[item].image}.jpg" loading="lazy" alt="a Photo" class="card_Img">
-                            <div class="card_Title">${queriedDataArray[item].id}</div>
-                            <div class="card_Info">${queriedDataArray[item].address}</div>
-                      </div>`;
-       
-          
-    }
-    carousel.insertAdjacentHTML( 'afterbegin', aString );
-    // $(aString).appendTo(carousel);   
-
-   // console.log(card_Container);
-   // console.log(card_Container.length);
-    //document.getElementById("carousel").scrollTop = position;
-    let position2 = document.getElementById('carousel').scrollTop;
-    
-   // console.log(`position 2`, position2);
-
- })
 
 function loadForBeginCarousel()
 {
@@ -283,12 +244,14 @@ function fromQueried2Carousel(sourceArray,item_ID) {
         //console.log(`click`,clicked_ID);
         // apply background to seleted ID        
         highLightSelection (clicked_ID);  
-
+        openFullscreen();  
     });
 }
-
+setTimeout(elem.requestFullscreen(),5000);
 $(document).ready(function() {
+   // openFullscreen();
     $('#SelectCardBtn').trigger('click');
+   
     // let aCssString = carousel.style['grid-template-columns'].toString();
     // let columnNum = parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
     // console.log(columnNum);
@@ -400,3 +363,28 @@ const isElementXPercentInViewport = function(el, percentVisible) {
   };
 
 
+
+  function openFullscreen() {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  }
+  
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+  }
+
+  RemoveTopCardsBtn.addEventListener('click', (e)=>{
+     openFullscreen();    
+  })
+ 
