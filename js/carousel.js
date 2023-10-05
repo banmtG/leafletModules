@@ -42,7 +42,7 @@ function loadForBeginCarousel()
             let item=firstItemIndex-i;
            // console.log(item);
             aHtmlString = aHtmlString + `<div class="card_Container">
-                                <img src="./img/${queriedDataArray[item].image}.jpg" loading="lazy" alt="a Photo" class="card_Img">
+                                <img src="./img/estate/${queriedDataArray[item].image}.jpg" alt="a Photo" class="card_Img">
                                 <div class="card_Title">${queriedDataArray[item].id}</div>
                                 <div class="card_Info">${queriedDataArray[item].address}</div>
                         </div>`;            
@@ -83,7 +83,7 @@ function loadForEndCarousel()
             let item=lastItemIndex+i;
             console.log(item);
             aHtmlString = aHtmlString + `<div class="card_Container">
-                                <img src="./img/${queriedDataArray[item].image}.jpg" loading="lazy" alt="a Photo" class="card_Img">
+                                <img src="./img/estate/${queriedDataArray[item].image}.jpg" alt="a Photo" class="card_Img">
                                 <div class="card_Title">${queriedDataArray[item].id}</div>
                                 <div class="card_Info">${queriedDataArray[item].address}</div>
                         </div>`;            
@@ -129,11 +129,12 @@ carousel.addEventListener("scroll", (e) => {
      console.log(`totalValue`,totalValue);
      
     if (document.getElementById("carousel").scrollTop<100 && scrollDirection=='up') {
-        
+
         var myElement = carousel.firstChild;    
         loadForBeginCarousel();
         myElement.scrollIntoView();
         addSwitch = 1;
+        
     }  
     let tuyetdoi = Math.abs(totalValue - carousel.scrollHeight);
     console.log(`tuyet doi == `, tuyetdoi);
@@ -148,6 +149,13 @@ carousel.addEventListener("scroll", (e) => {
 
     if (addSwitch == 1)
     {
+        $('#ajax-loader').show();
+
+        onImagesLoaded(container, function() {
+            $('#ajax-loader').hide();
+        });
+
+       
         $('.card_Container').on(`click`, function (e) {
             //get ID
             console.log(e.currentTarget.children[1]);
@@ -214,7 +222,7 @@ function fromQueried2Carousel(sourceArray,item_ID) {
     for (let item=0;item<queriedDataArray.length;item++)
     {
         htmlArray.push(`<div class="card_Container">
-                            <img src="./img/${queriedDataArray[item].image}.jpg" loading="lazy" alt="a Photo" class="card_Img">
+                            <img src="./img/estate/${queriedDataArray[item].image}.jpg" loading="lazy" alt="a Photo" class="card_Img">
                             <div class="card_Title">${queriedDataArray[item].id}</div>
                             <div class="card_Info">${queriedDataArray[item].address}</div>
                       </div>`);
@@ -392,3 +400,28 @@ const isElementXPercentInViewport = function(el, percentVisible) {
      openFullscreen();    
   })
  
+
+
+  function onImagesLoaded(container, event) {
+    var images = container.getElementsByTagName("img");
+    var loaded = images.length;
+    for (var i = 0; i < images.length; i++) {
+        if (images[i].complete) {
+            loaded--;
+        }
+        else {
+            images[i].addEventListener("load", function() {
+                loaded--;
+                if (loaded == 0) {
+                    event();
+                }
+            });
+        }
+        if (loaded == 0) {
+            event();
+        }
+    }
+}
+
+var container = document.getElementsByTagName("body")[0];
+

@@ -68,6 +68,16 @@
     grid-row: 2;
 }
 
+#ajax-loader {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 25px);
+    z-index: 1000;
+    display: none;
+}
+
 @media (min-width: 400px) {
     #footer {
         display:none;
