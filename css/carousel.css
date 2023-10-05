@@ -13,12 +13,25 @@
     scrollbar-width: none;
 }  */
 
+.card_Container1{
+        width: 100%;
+        border: 1px grey dotted;
+        height: auto;
+        padding: 5px;
+        display: flex;  
+        flex-direction: column;
+        justify-content: flex-start;    
+}
+
 .card_Container {
     width: 100%;
     border: 1px grey dotted;
     height: auto;
     padding: 5px;
-    display: grid;
+    display: flex;  
+    flex-direction: column;
+    justify-content: flex-start;
+
 }
 
 .card_Img{

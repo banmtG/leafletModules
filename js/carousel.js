@@ -135,7 +135,17 @@ function loadForEndCarousel()
     }  
 }
 
+let scrollDirection;
+let oldScrollTop;
+carousel.addEventListener('scroll', (e) => {
+
+});
+
+
 carousel.addEventListener("scrollend", (e) => {
+    console.log(oldScrollTop);
+    console.log(carousel.scrollTop);
+    oldScrollTop=carousel.scrollTop;
     console.log(e);
     let addSwitch=0;
     let theHeight = $("#carousel").height();
@@ -147,7 +157,7 @@ carousel.addEventListener("scrollend", (e) => {
     let totalValue = theHeight + carousel.scrollTop;
      console.log(`totalValue`,totalValue);
      
-    if (document.getElementById("carousel").scrollTop==0) {
+    if (document.getElementById("carousel").scrollTop<100) {
         var myElement = carousel.firstChild;    
         loadForBeginCarousel();
         myElement.scrollIntoView();
@@ -155,7 +165,7 @@ carousel.addEventListener("scrollend", (e) => {
     }  
     let tuyetdoi = Math.abs(totalValue - carousel.scrollHeight);
     console.log(`tuyet doi == `, tuyetdoi);
-    if (tuyetdoi<0.5) {
+    if (tuyetdoi<200) {
         console.log(`vaof loadForEndCarousel`);
        
         var myElement = carousel.lastChild;    
@@ -198,8 +208,8 @@ function get20Items(queriedDataArray,middleItemID)
         if (queriedDataArray[index].id==middleItemID) 
         {
            // console.log(index);
-            firstItemIndex = index - 10;
-            lastItemIndex = index + 10;
+            firstItemIndex = index - 20;
+            lastItemIndex = index + 20;
             if (firstItemIndex<0) {
                 firstItemIndex=0;               
             }
@@ -215,6 +225,9 @@ function get20Items(queriedDataArray,middleItemID)
 
     for (let i=firstItemIndex;i<lastItemIndex;i++)    
         the20ItemsArray.push(queriedDataArray[i]);
+
+
+
 
     return the20ItemsArray;
 }
@@ -236,12 +249,24 @@ function fromQueried2Carousel(sourceArray,item_ID) {
        
        // $(aStrig).appendTo(carousel);        
     }
+
+    let htmlDummyArray = [];
+    if (queriedDataArray.length<9) 
+    {
+        for (i=0;i<9-queriedDataArray.length;i++)
+        htmlDummyArray.push(`<div class="card_Container1">
+                            <img src="" loading="lazy" alt=" " class="card_Img">
+                            <div class="card_Title"></div>
+                            <div class="card_Info"></div>
+                      </div>`);
+    }
    // console.log(htmlArray.join(""));
     carousel.innerHTML = htmlArray.join("");
+    carousel.insertAdjacentHTML( 'beforeend', htmlDummyArray.join(""));
    // console.log(carousel.innerHTML);
     //highLightSelection (item_ID);  
     highLightSelection (item_ID);  
-    //setTimeout($('#SelectCardBtn').trigger('click'),2000);
+    
 
     $('.card_Container').on(`click`, function (e) {
         //get ID
@@ -254,6 +279,31 @@ function fromQueried2Carousel(sourceArray,item_ID) {
 
     });
 }
+
+$(document).ready(function() {
+    $('#SelectCardBtn').trigger('click');
+    // let aCssString = carousel.style['grid-template-columns'].toString();
+    // let columnNum = parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
+    // console.log(columnNum);
+    // let card_Container=document.getElementsByClassName('card_Container')[0];
+    // console.log(card_Container);
+   
+    // let heightofOneContainer=card_Container.offsetHeight;
+    // console.log(heightofOneContainer);
+    // if (queriedDataArray.length<=columnNum*2) {
+    //     console.log(`case 1`);
+    //     console.log($('#map').height()*2/3);
+    //     carousel.style.height=`${$('#map').height()*2/3}px`;
+    // }
+
+    // if (queriedDataArray.length<=columnNum) {
+    //     console.log(`case 2`);
+    //     console.log($('#map').height()/3);
+    //     carousel.style.height=`${$('#map').height()/3}px`;
+    // }
+
+});
+
 
 function findCardElement(id) {
     let cards_Collection = document.getElementsByClassName('card_Container'); // not array but HTMLCollection
@@ -305,24 +355,29 @@ function autoAdjustCardsOnResize() {
         //console.log('nho hon 500');
         //$('#carousel').css("grid-template-columns","repeat(2, 1fr)");
         carousel.style['grid-template-columns'] = "repeat(4, 1fr)";
+        $('.card_Container1').show();
     }
     if (width<900) 
     {
         //console.log('nho hon 500');
         //$('#carousel').css("grid-template-columns","repeat(2, 1fr)");
         carousel.style['grid-template-columns'] = "repeat(3, 1fr)";
+        $('.card_Container1').show();
     }
-    if (width<660) 
+    if (width<690) 
     {
        // console.log('nho hon 400');
         //$('#carousel').css("grid-template-columns","repeat(2, 1fr)");
         carousel.style['grid-template-columns'] = "repeat(2, 1fr)";
+       $('.card_Container1:not(:last)').hide();
+        
     }
     if (width<370) 
     {
       //  console.log('nho hon 300');
        // $('#carousel').css("grid-template-columns","repeat (2, 1fr)");
         carousel.style['grid-template-columns'] = "repeat(1, 1fr)";
+        $('.card_Container1').hide();
     }
 }
 

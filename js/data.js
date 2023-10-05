@@ -2806,20 +2806,19 @@ const returnDataObj = {
 
   let queriedDataArray;
   let queryConditionArray = [];
-  let middleItemID=105;
+  let middleItemID=15;
   
-  for (let i=10;i<110;i++)
+  for (let i=1;i<17;i++)
   queryConditionArray.push(i.toString());
 
-
+console.log(queryConditionArray);
 queriedDataArray = returnDataObj.property.filter((val) => {
- // console.log(queryConditionArray.indexOf(val.id)); 
-if (queryConditionArray.indexOf(val.id)>0) {   
- 
-    return val;
+  console.log(queryConditionArray.indexOf(val.id)); 
+if (queryConditionArray.indexOf(val.id)>=0) {   
+     return val;
     }
 });
 
-//console.log(queriedDataArray);
 
-// console.log(`queriedDataArray`,queriedDataArray);
+
+console.log(`queriedDataArray`,queriedDataArray);
