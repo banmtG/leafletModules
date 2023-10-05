@@ -59,7 +59,7 @@ RemoveTopCardsBtn.addEventListener('click', (e)=>{
 function loadForBeginCarousel()
 {
     let aCssString = carousel.style['grid-template-columns'].toString();
-    let columnNum = 1*parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
+    let columnNum = 3*parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
    // console.log(`columnNum`, columnNum);
     let card_Container=document.getElementsByClassName('card_Container');
    // console.log(`columnNum`,columnNum);
@@ -96,7 +96,7 @@ function loadForBeginCarousel()
 function loadForEndCarousel()
 {
     let aCssString = carousel.style['grid-template-columns'].toString();
-    let columnNum = 1*parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
+    let columnNum = 3*parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
     console.log(`columnNum`, columnNum);
     let card_Container=document.getElementsByClassName('card_Container');
     console.log(`columnNum`,columnNum);
