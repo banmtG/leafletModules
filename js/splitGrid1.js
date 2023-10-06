@@ -1,5 +1,5 @@
 const anArrayPosition=[0,35,50,60,80,100];
-const gutterSize=10;
+const gutterSize=3;
 let preOrient='';
 
 function checkClosestPosition(anArray,value) {    
@@ -85,6 +85,7 @@ function setupGridSplit ()
         console.log(`remove Column Gutter`);
         split.addColumnGutter(gutter, 1);
         gutter.className = "gutter-col gutter-col-1";
+        gutter.innerHTML='<div class="overLapIcon"><img src="./img/row-resize-icon.png" alt="sample"><div>';
         document.querySelector('#content-grid').style['grid-template-columns'] = `1fr ${gutterSize}px 1fr`;
         console.log('add column gutter');
         orient = 'column';
@@ -102,11 +103,14 @@ function setupGridSplit ()
         console.log(`remove Row Gutter`);
         split.addRowGutter(gutter, 1);
         gutter.className = "gutter-row gutter-row-1";
+        gutter.innerHTML='<div class="overLapIcon"><img src="./img/column-resize-icon.png" alt="sample"><div>';
+
         document.querySelector('#content-grid').style['grid-template-rows'] = `1fr ${gutterSize}px 1fr`;
         console.log('add row gutter');
         orient = 'row';
         preOrient = orient;
     }
+
     setTimeout(function(){ map.invalidateSize()}, 100);
     grid.appendChild(gutter);    
     //split.addColumnGutter(gutter, 1);

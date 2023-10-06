@@ -2806,7 +2806,7 @@ const returnDataObj = {
 
   let queriedDataArray;
   let queryConditionArray = [];
-  let middleItemID=6;
+  let middleItemID=10;
   
   for (let i=1;i<11;i++)
   queryConditionArray.push(i.toString());

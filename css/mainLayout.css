@@ -53,6 +53,11 @@
 
 .gutter-col-1 {
     grid-column: 2;
+     /* display img center of a div */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+      /* display img center of a div */
 }
 
 .gutter-row {
@@ -66,7 +71,34 @@
 
 .gutter-row-1 {
     grid-row: 2;
+    /* display img center of a div */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display img center of a div */
 }
+
+
+.overLapIcon {
+    width: 30px;
+    display: grid; 
+}
+
+.overLapIcon > img {
+    width: 25px;
+    opacity: 0.25;
+}
+/* .overLapIcon > i:first-child {
+    font-size: 30px;  
+    color: rgb(237, 237, 237);
+    grid-area: 1/1/1/1;
+}
+
+.overLapIcon > i:nth-child(2) {
+    font-size: 30px;    
+    color: rgba(129, 129, 129, 0.3);
+    grid-area: 1/1/1/1;
+} */
 
 #ajax-loader {
     width: 50px;
