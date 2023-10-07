@@ -42,7 +42,7 @@ function loadForBeginCarousel()
             let item=firstItemIndex-i;
            // console.log(item);
             aHtmlString = aHtmlString + `<div class="card_Container">
-                                <img src="./img/estate/${queriedDataArray[item].image}.jpg" alt="a Photo" class="card_Img">
+                                <img src="./img/estate/${queriedDataArray[item].image[0]}.jpg" alt="a Photo" class="card_Img">
                                 <div class="card_Title">${queriedDataArray[item].id}</div>
                                 <div class="card_Info">${queriedDataArray[item].address}</div>
                         </div>`;            
@@ -83,7 +83,7 @@ function loadForEndCarousel()
             let item=lastItemIndex+i;
             console.log(item);
             aHtmlString = aHtmlString + `<div class="card_Container">
-                                <img src="./img/estate/${queriedDataArray[item].image}.jpg" alt="a Photo" class="card_Img">
+                                <img src="./img/estate/${queriedDataArray[item].image[0]}.jpg" alt="a Photo" class="card_Img">
                                 <div class="card_Title">${queriedDataArray[item].id}</div>
                                 <div class="card_Info">${queriedDataArray[item].address}</div>
                         </div>`;            
@@ -154,6 +154,9 @@ carousel.addEventListener("scroll", (e) => {
         onImagesLoaded(container, function() {
             $('#ajax-loader').hide();
         });
+        setTimeout(function() {
+            $('#ajax-loader').hide();
+        },2000);
 
        
         $('.card_Container').on(`click`, function (e) {
@@ -222,7 +225,7 @@ function fromQueried2Carousel(sourceArray,item_ID) {
     for (let item=0;item<queriedDataArray.length;item++)
     {
         htmlArray.push(`<div class="card_Container">
-                            <img src="./img/estate/${queriedDataArray[item].image}.jpg" loading="lazy" alt="a Photo" class="card_Img">
+                            <img src="./img/estate/${queriedDataArray[item].image[0]}.jpg" loading="lazy" alt="a Photo" class="card_Img">
                             <div class="card_Title">${queriedDataArray[item].id}</div>
                             <div class="card_Info">${queriedDataArray[item].address}</div>
                       </div>`);
@@ -256,7 +259,7 @@ function fromQueried2Carousel(sourceArray,item_ID) {
         //console.log(`click`,clicked_ID);
         // apply background to seleted ID        
         highLightSelection (clicked_ID);  
-        openFullscreen();  
+        //openFullscreen();  
     });
 }
 

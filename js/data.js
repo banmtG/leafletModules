@@ -2806,9 +2806,9 @@ const returnDataObj = {
 
   let queriedDataArray;
   let queryConditionArray = [];
-  let middleItemID=10;
+  let middleItemID=20;
   
-  for (let i=1;i<11;i++)
+  for (let i=1;i<51;i++)
   queryConditionArray.push(i.toString());
 
 console.log(queryConditionArray);
@@ -2819,6 +2819,20 @@ if (queryConditionArray.indexOf(val.id)>=0) {
     }
 });
 
+
+
+
+for (let i=0;i<queriedDataArray.length;i++)
+{
+    let aRandomPhotoArray = [];
+    aRandomPhotoArray.push(queriedDataArray[i].image);
+    for (let j=0;j<=Math.floor(Math.random()*20);j++)
+    {
+        aRandomPhotoArray.push(Math.floor(Math.random()*200).toString());
+    }
+    queriedDataArray[i].image = aRandomPhotoArray.slice();
+    console.log(queriedDataArray[i].image);
+}
 
 
 console.log(`queriedDataArray`,queriedDataArray);
