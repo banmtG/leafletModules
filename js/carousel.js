@@ -1,15 +1,20 @@
 const carousel = document.getElementById('carousel');
 let theScrollID;
-let SelectCardBtn= document.getElementById('SelectCardBtn');
-let RemoveTopCardsBtn = document.getElementById('RemoveTopCardsBtn');
-let showCarouselChild = document.getElementById('showCarouselChild');
-var elem = document.documentElement;
+// let SelectCardBtn= document.getElementById('SelectCardBtn');
+// let RemoveTopCardsBtn = document.getElementById('RemoveTopCardsBtn');
+// let showCarouselChild = document.getElementById('showCarouselChild');
 
-showCarouselChild.addEventListener('click', (e)=>{
-    console.log(carousel.children);
-    console.log(`firstItemIndex`,firstItemIndex);
-    console.log(`lastItemIndex`,lastItemIndex);
-})
+
+// showCarouselChild.addEventListener('click', (e)=>{
+//     console.log(carousel.children);
+//     console.log(`firstItemIndex`,firstItemIndex);
+//     console.log(`lastItemIndex`,lastItemIndex);
+// })
+
+// SelectCardBtn.addEventListener('click', (e)=>{
+//    // console.log(`click`);
+//     scroll2Selection(theScrollID);
+// })
 
 let peg=0;
 let firstItemIndex,lastItemIndex;
@@ -41,11 +46,7 @@ function loadForBeginCarousel()
         {
             let item=firstItemIndex-i;
            // console.log(item);
-            aHtmlString = aHtmlString + `<div class="card_Container">
-                                <img src="./img/estate/${queriedDataArray[item].image[0]}.jpg" alt="a Photo" class="card_Img">
-                                <div class="card_Title">${queriedDataArray[item].id}</div>
-                                <div class="card_Info">${queriedDataArray[item].address}</div>
-                        </div>`;            
+            aHtmlString = aHtmlString + templateString(queriedDataArray[item]);
         }
 
         carousel.insertAdjacentHTML( 'afterbegin', aHtmlString );
@@ -82,11 +83,7 @@ function loadForEndCarousel()
         {
             let item=lastItemIndex+i;
             console.log(item);
-            aHtmlString = aHtmlString + `<div class="card_Container">
-                                <img src="./img/estate/${queriedDataArray[item].image[0]}.jpg" alt="a Photo" class="card_Img">
-                                <div class="card_Title">${queriedDataArray[item].id}</div>
-                                <div class="card_Info">${queriedDataArray[item].address}</div>
-                        </div>`;            
+            aHtmlString = aHtmlString + templateString(queriedDataArray[item]);         
         }
 
         carousel.insertAdjacentHTML( 'beforeend', aHtmlString );
@@ -98,35 +95,49 @@ function loadForEndCarousel()
 
 let scrollDirection;
 let oldScrollTop;
-carousel.addEventListener('scroll', (e) => {
 
-});
+// $('#carousel').on('scrollend', function() {
+//     // handle event 
+//     //console.log(`jquery onscroll `);
+//     //$('#messageLog').html(`jquery onscroll end ${$('#carousel').scrollTop()}`);
 
-$('#carousel').on('scrollend', function() {
-    // handle event 
-    console.log(`jquery onscroll `);
-    $('#messageLog').html(`jquery onscroll end ${$('#carousel').scrollTop()}`);
+// });
 
-});
+function templateString(houseObject) {
+    let aStringImg = "";
+    for (let i=0;i<houseObject.image.length;i++)
+    {
+        aStringImg = aStringImg + `<img src="./img/estate/${houseObject.image[i]}.jpg" alt="a Photo" class="card_Img">`;
+    }
+
+    return `<div class="card_Container"> 
+                <div class="card_imgCarousel">${aStringImg}</div>
+                <div class="card_Title">${houseObject.id}</div>
+                <div class="card_Info">${houseObject.address}</div>
+            </div>`;               
+
+}
+
+
 
 
 carousel.addEventListener("scroll", (e) => {
-    console.log(oldScrollTop);
-    console.log(carousel.scrollTop);
+    //console.log(oldScrollTop);
+    //console.log(carousel.scrollTop);
    
     if (oldScrollTop>carousel.scrollTop) scrollDirection='up';
     if (oldScrollTop<carousel.scrollTop) scrollDirection='down';
     oldScrollTop=carousel.scrollTop;
-    console.log(scrollDirection);
+   // console.log(scrollDirection);
     let addSwitch=0;
     let theHeight = $("#carousel").height();
     // let theHeight
-     console.log(`scrollHeight`, carousel.scrollHeight);
-     console.log(`scrollTop`, carousel.scrollTop);
-     console.log(`theHeight`,theHeight);
+    // console.log(`scrollHeight`, carousel.scrollHeight);
+   //  console.log(`scrollTop`, carousel.scrollTop);
+   //  console.log(`theHeight`,theHeight);
       
     let totalValue = theHeight + carousel.scrollTop;
-     console.log(`totalValue`,totalValue);
+ //    console.log(`totalValue`,totalValue);
      
     if (document.getElementById("carousel").scrollTop<100 && scrollDirection=='up') {
 
@@ -137,7 +148,7 @@ carousel.addEventListener("scroll", (e) => {
         
     }  
     let tuyetdoi = Math.abs(totalValue - carousel.scrollHeight);
-    console.log(`tuyet doi == `, tuyetdoi);
+   // console.log(`tuyet doi == `, tuyetdoi);
     if (tuyetdoi<200 && scrollDirection=='down') {
         console.log(`vaof loadForEndCarousel`);
        
@@ -169,18 +180,69 @@ carousel.addEventListener("scroll", (e) => {
             highLightSelection (clicked_ID);  
     
         });
+
+       
+        setupImgCarousel();
+       
+
+
     }
     // if (document.getElementById("carousel").scrollTop==0) {
     //     var myElement = carousel.lastChild;    
     //     RemoveTopCardsBtn.click();
     //     myElement.scrollIntoView();
     // }
-    console.log(`scroll end`,addSwitch);
+   // console.log(`scroll end`,addSwitch);
     //console.log(`document.getElementById("carousel").scrollTop`,document.getElementById("carousel").scrollTop);
    //console.log(document.getElementById("carousel").scrollTop);
 })
 
 fromQueried2Carousel(queriedDataArray,theScrollID);
+
+function setupImgCarousel()
+{
+    let imgCarousels = document.getElementsByClassName('card_imgCarousel'); 
+   // console.log(imgCarousels);    
+
+    for (const imgCarousel of imgCarousels) {
+      imgCarousel.addEventListener("scroll", scrollHandler);
+    }
+}
+
+function scrollHandler(e) {
+
+    var timeOut = 50;
+
+    clearTimeout(e.target.scrollTimeout); 
+
+    e.target.scrollTimeout = setTimeout(function() {
+        //using the timeOut to evaluate scrolling state
+        if (!timeOut) {
+            console.log('Scroller snapped!');
+        } else {     
+           console.log('User stopped scrolling.');
+            let theWidth = e.target.children[0].width;
+            let theLength = e.target.children.length;
+            console.log(theLength);
+            let anArray = [];
+            for (let i=0;i<theLength;i++)
+                anArray.push(i*theWidth);
+            console.log(anArray);
+            console.log(`scrollLeft`,e.target.scrollLeft);
+            let snapPosition=checkClosestPosition(anArray,e.target.scrollLeft);
+            console.log(`snapPosition`,snapPosition);
+            console.log(anArray[theLength-1]);
+            if (snapPosition<=anArray[theLength-1]) {
+                e.target.scrollTo({
+                    left: snapPosition,
+                    behavior: "smooth",
+                })
+               // e.target.scrollLeft = snapPosition;
+            }
+        }
+    }, timeOut);
+   
+}
 
 function get20Items(queriedDataArray,middleItemID)
 {
@@ -191,8 +253,8 @@ function get20Items(queriedDataArray,middleItemID)
         if (queriedDataArray[index].id==middleItemID) 
         {
            // console.log(index);
-            firstItemIndex = index - 20;
-            lastItemIndex = index + 20;
+            firstItemIndex = index - 10;
+            lastItemIndex = index + 10;
             if (firstItemIndex<0) {
                 firstItemIndex=0;               
             }
@@ -209,9 +271,6 @@ function get20Items(queriedDataArray,middleItemID)
     for (let i=firstItemIndex;i<lastItemIndex;i++)    
         the20ItemsArray.push(queriedDataArray[i]);
 
-
-
-
     return the20ItemsArray;
 }
 
@@ -224,11 +283,7 @@ function fromQueried2Carousel(sourceArray,item_ID) {
    // console.log(queriedDataArray);
     for (let item=0;item<queriedDataArray.length;item++)
     {
-        htmlArray.push(`<div class="card_Container">
-                            <img src="./img/estate/${queriedDataArray[item].image[0]}.jpg" loading="lazy" alt="a Photo" class="card_Img">
-                            <div class="card_Title">${queriedDataArray[item].id}</div>
-                            <div class="card_Info">${queriedDataArray[item].address}</div>
-                      </div>`);
+        htmlArray.push(templateString(queriedDataArray[item]));
        
        // $(aStrig).appendTo(carousel);        
     }
@@ -250,7 +305,6 @@ function fromQueried2Carousel(sourceArray,item_ID) {
     //highLightSelection (item_ID);  
     highLightSelection (item_ID);  
     
-
     $('.card_Container').on(`click`, function (e) {
         //get ID
         console.log(e.currentTarget.children[1]);
@@ -261,11 +315,19 @@ function fromQueried2Carousel(sourceArray,item_ID) {
         highLightSelection (clicked_ID);  
         //openFullscreen();  
     });
+
+    setupImgCarousel();
+
 }
 
 $(document).ready(function() {
    // openFullscreen();
     $('#SelectCardBtn').trigger('click');
+
+    // RemoveTopCardsBtn.addEventListener('click', (e)=>{
+    //     openFullscreen();    
+    // })
+    
    
     // let aCssString = carousel.style['grid-template-columns'].toString();
     // let columnNum = parseInt(aCssString.substring(aCssString.indexOf('(')+1,aCssString.indexOf('(')+2));
@@ -294,12 +356,12 @@ function findCardElement(id) {
     let cards_Collection = document.getElementsByClassName('card_Container'); // not array but HTMLCollection
     let cards_Array = Array.prototype.slice.call(cards_Collection);
     let res = cards_Array.filter((el) => el.children[1].childNodes[0].data==id)
-    console.log(res[0]);
+   // console.log(res[0]);
     return res[0];
 }
 
 function highLightSelection (id) {
-    console.log(id);
+    //console.log(id);
     $('.card_Container').css('background',"");
     let element_withID = findCardElement(id);
     element_withID.style.background = `rgba(151, 151, 151, .4)  `;
@@ -316,15 +378,12 @@ function highLightSelection (id) {
     // // console.log(e.currentTarget.style.background);
     // res[0].style.background = `rgba(151, 151, 151, .4)  `;
 
-    SelectCardBtn.addEventListener('click', (e)=>{
-       // console.log(`click`);
-        scroll2Selection(theScrollID);
-    })
+
 
 function scroll2Selection (id) {
     highLightSelection (id);
     let element_withID = findCardElement(id);    
-    console.log(`element_withID`,element_withID);
+    //console.log(`element_withID`,element_withID);
    // console.log(isElementXPercentInViewport(element_withID,100));
    element_withID.scrollIntoView();
    // console.log(isElementXPercentInViewport(element_withID,100));
@@ -379,30 +438,8 @@ const isElementXPercentInViewport = function(el, percentVisible) {
 
 
 
-  function openFullscreen() {
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-      elem.msRequestFullscreen();
-    }
-  }
-  
-  function closeFullscreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { /* Safari */
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE11 */
-      document.msExitFullscreen();
-    }
-  }
 
-  RemoveTopCardsBtn.addEventListener('click', (e)=>{
-     openFullscreen();    
-  })
- 
+
 
 
   function onImagesLoaded(container, event) {

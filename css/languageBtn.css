@@ -1,0 +1,126 @@
+.languageBtn {
+        /* display img center of a div */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* display img center of a div */
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
+    display: none;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMy {
+    display: none;
+}
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    display: none;
+}
+
+.skiptranslate {
+     display: none;  
+}
+
+.VIpgJd-ZVi9od-ORHb {
+    display: none;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+    display: none;
+}
+
+.translated-ltr {
+    position: absolute;
+    top:-40px;
+} 
+
+.goog-te-gadget :not(:first-child) {
+    display: none;
+} 
+
+.goog-logo-link {
+    display:none !important;
+} 
+    
+.goog-te-gadget{
+    color: transparent !important;
+}
+
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+    display: none;
+}
+
+.skiptranslate.goog-te-gadget:first-child  {
+    position: absolute;
+    top: 12px;
+}
+
+.goog-te-combo {
+    width: 50px;
+}
+
+#google_translate_element {
+    display:none;
+}
+
+
+.flag_img > img {
+    width: 30px;   
+    top:-2px;
+    position: relative;
+}
+
+#dropdownFlagBtn > img {
+    top:2.5px;
+    position: relative;
+}
+
+.dropdown__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    border-bottom: 1px dotted var(--scrollbar-color);
+    height: 40px; 
+}
+
+.dropdown {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    max-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    
+}
+
+.dropdown__window {
+    position: absolute;
+    background-color: var(--bg-color);
+    width: 50px;
+    height: auto;
+    left:-10px;
+    top:35px;
+    z-index: 12;
+    /* overflow: hidden; */
+    display: none;
+    visibility: hidden;
+}
+
+.dropdown__window--active {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    visibility: visible;
+}
+
+.dropdown__window> * {
+    cursor: pointer;
+    /* display: block; */
+    /* white-space: nowrap; */
+}
+
+.languageBtn {
+    min-width: 50px;  
+}

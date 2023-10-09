@@ -25,23 +25,49 @@
         <script type="text/javascript" src="./js/leaflet/leaflet-gplaces-autocomplete.js"></script>
         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpkmw5Z6NGdLL9MbPsywvWaMHHPVUH_lI&libraries=places"></script> -->
         <!-- LOCAL javaScript library-->
-
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+        
         <!-- LOCAL css-->
         <link href="./css/base.css" rel="stylesheet">
+        <link href="./css/languageBtn.css" rel="stylesheet">
         <!-- <link href="./css/main.css" rel="stylesheet">       -->
         <link href="./css/mainLayout.css" rel="stylesheet">
         <link href="./css/leaflet/main-map-component.css" rel="stylesheet">
         <link href="./css/leaflet/leaflet-gplaces-autocomplete.css" rel="stylesheet">
         <link href="./css/carousel.css" rel="stylesheet">
 </head>
-<body>
+<body style="top: 0!important;"">
     <img id="ajax-loader" src="./img/Ajax-loader.gif" alt="sample">
+    <div id="google_translate_element"></div>
+
     <div id="main-grid-container">
-        <div id="header">
-            <div id="messageLog"></div>
-            <div id="SelectCardBtn">Select Card</div>
-            <div id="RemoveTopCardsBtn">Remove top cards</div>
-            <div id="showCarouselChild">showCarouselChild</div>
+        <div id="header">        
+            <div class="logo"> </div>
+            <div class="header_buttonContainer">
+                <div id="messageLog"></div>
+                <div class="header__btn" id="filterBtn">Searching for?</div>
+                <div class="header__btn" id="SelectCardBtn">Select Card</div>
+                <div class="header__btn" id="RemoveTopCardsBtn">Remove top cards</div>
+                <div class="header__btn" id="showCarouselChild">showCarouselChild</div> 
+            </div>
+            <div class="header__rightMenu">
+                <div class="shareLinkBtn"><i class="fa-solid fa-share"></i></div>
+                <div class="languageBtn"> 
+                    <div class="dropdown dropdown__open" tabindex="0">
+                        <div id="dropdownFlagBtn" class="flag_img"><img src="./img/flag/en.png" alt="Language"></div>
+                        <div class="dropdown__window">
+                            <div class="dropdown__link flag_link flag_img" data-lang="en"><img src="./img/flag/en.png" alt="sample"></div>
+                            <div class="dropdown__link flag_link flag_img" data-lang="vi"><img src="./img/flag/vi.png" alt="sample"></div>
+                            <div class="dropdown__link flag_link flag_img" data-lang="ja"><img src="./img/flag/ja.png" alt="sample"></div>
+                            <div class="dropdown__link flag_link flag_img" data-lang="ko"><img src="./img/flag/ko.png" alt="sample"></div>
+                            <div class="dropdown__link flag_link flag_img" data-lang="zh-CN"><img src="./img/flag/zh.png" alt="sample"></div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="magnifyBtn maximiseWindow"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div>
+            </div>
         </div>
         <div id="content-grid">
            
@@ -57,8 +83,7 @@
                     </div>
                 </template>
             </div>       
-        </div>
-        <div id="footer">contact</div>
+        </div>       
     </div>
 
     
@@ -68,6 +93,8 @@
     </div>
     <script type="text/javascript" src="./js/data.js"></script>
     <script type="text/javascript" src="./js/leaflet/main-map-component.js"></script>
+    <script type="text/javascript" src="./js/languageBtn.js"></script>
+    <script type="text/javascript" src="./js/mainLayout.js"></script>
     <script type="text/javascript" src="./js/splitGrid1.js"></script>
     <script type="text/javascript" src="./js/carousel.js"></script>
 </body>

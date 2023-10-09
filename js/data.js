@@ -2811,9 +2811,9 @@ const returnDataObj = {
   for (let i=1;i<51;i++)
   queryConditionArray.push(i.toString());
 
-console.log(queryConditionArray);
+//console.log(queryConditionArray);
 queriedDataArray = returnDataObj.property.filter((val) => {
-  console.log(queryConditionArray.indexOf(val.id)); 
+  //console.log(queryConditionArray.indexOf(val.id)); 
 if (queryConditionArray.indexOf(val.id)>=0) {   
      return val;
     }
@@ -2828,10 +2828,11 @@ for (let i=0;i<queriedDataArray.length;i++)
     aRandomPhotoArray.push(queriedDataArray[i].image);
     for (let j=0;j<=Math.floor(Math.random()*20);j++)
     {
-        aRandomPhotoArray.push(Math.floor(Math.random()*200).toString());
+        let aNumber =1 + Math.floor(Math.random()*198);
+        aRandomPhotoArray.push(aNumber.toString());
     }
     queriedDataArray[i].image = aRandomPhotoArray.slice();
-    console.log(queriedDataArray[i].image);
+    //console.log(queriedDataArray[i].image);
 }
 
 

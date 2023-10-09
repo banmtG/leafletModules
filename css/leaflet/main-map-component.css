@@ -6,3 +6,7 @@
 .leaflet-pane {
     z-index: 0;
 }
+
+.leaflet-control-zoom{
+    display:none;
+}

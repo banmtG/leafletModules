@@ -1,6 +1,7 @@
 const anArrayPosition=[0,35,50,60,80,100];
 const gutterSize=3;
 let preOrient='';
+let elem = document.documentElement;
 
 function checkClosestPosition(anArray,value) {    
     let Pos;
@@ -16,31 +17,6 @@ function checkClosestPosition(anArray,value) {
    
 }
 
-$(window).on( "resize", function() {
-
-    clearTimeout(window.resizedFinished);
-    window.resizedFinished = setTimeout(function(){
-        console.log('Resized finished.');
-        setupGridSplit();
-        autoAdjustCardsOnResize();
-    }, 50);
-//     theWidth =  $("#content-grid").width();
-//     //console.log(theWidth);
-//     let snapPercent=$("#windowStateMap").val();
-//    // console.log(snapPercent);
-//     let snapPos=snapPercent*theWidth/100;        
-//    // console.log(`snapPos`,snapPos);  
-//     //$("#aMap").width(snapPos);
-//     let leftOver = theWidth - gutterSize - snapPos;
-//     if (leftOver<0) {
-//         leftOver=0;
-//         snapPos=theWidth-gutterSize;
-//     }
-//     //console.log(`leftOver`,leftOver);
-   // document.querySelector('#content-grid').style['grid-template-columns'] = `${snapPos}px ${gutterSize}px ${leftOver}px`;
-    // adjustSplitGridDirection();
-  
-} );
 
 
 $( document ).ready(function() {
@@ -76,37 +52,37 @@ function setupGridSplit ()
     });
 
     if (theWidth>=900&&preOrient!='column') {
-        console.log(preOrient);
+        //console.log(preOrient);
         $('.gutter-col').remove();
         $('.gutter-row').remove();
         grid.style.removeProperty('grid-template-rows');
         grid.style.removeProperty('grid-template-columns');
         //split.removeColumnGutter(1,true);
-        console.log(`remove Column Gutter`);
+       // console.log(`remove Column Gutter`);
         split.addColumnGutter(gutter, 1);
         gutter.className = "gutter-col gutter-col-1";
         gutter.innerHTML='<div class="overLapIcon"><img src="./img/row-resize-icon.png" alt="sample"><div>';
         document.querySelector('#content-grid').style['grid-template-columns'] = `1fr ${gutterSize}px 1fr`;
-        console.log('add column gutter');
+       // console.log('add column gutter');
         orient = 'column';
         preOrient = orient;
     }
 
     if (theWidth<900&&preOrient!='row') {
-        console.log(preOrient);
+        //console.log(preOrient);
         // split.removeRowGutter(1,true);
         $('.gutter-col').remove();
         $('.gutter-row').remove();
         grid.style.removeProperty('grid-template-rows');
         grid.style.removeProperty('grid-template-columns');
         // split.removeColumnGutter(1,true);
-        console.log(`remove Row Gutter`);
+        //console.log(`remove Row Gutter`);
         split.addRowGutter(gutter, 1);
         gutter.className = "gutter-row gutter-row-1";
         gutter.innerHTML='<div class="overLapIcon"><img src="./img/column-resize-icon.png" alt="sample"><div>';
 
         document.querySelector('#content-grid').style['grid-template-rows'] = `1fr ${gutterSize}px 1fr`;
-        console.log('add row gutter');
+      //  console.log('add row gutter');
         orient = 'row';
         preOrient = orient;
     }
