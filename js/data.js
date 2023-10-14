@@ -2806,9 +2806,9 @@ const returnDataObj = {
 
   let queriedDataArray;
   let queryConditionArray = [];
-  let middleItemID=20;
+  let middleItemID=82;
   
-  for (let i=1;i<51;i++)
+  for (let i=15;i<125;i++)
   queryConditionArray.push(i.toString());
 
 //console.log(queryConditionArray);
@@ -2826,7 +2826,8 @@ for (let i=0;i<queriedDataArray.length;i++)
 {
     let aRandomPhotoArray = [];
     aRandomPhotoArray.push(queriedDataArray[i].image);
-    for (let j=0;j<=Math.floor(Math.random()*20);j++)
+    //for (let j=0;j<=Math.floor(Math.random()*50);j++)
+    for (let j=0;j<=20;j++)
     {
         let aNumber =1 + Math.floor(Math.random()*198);
         aRandomPhotoArray.push(aNumber.toString());

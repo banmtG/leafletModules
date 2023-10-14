@@ -1,5 +1,5 @@
-const anArrayPosition=[0,35,50,60,80,100];
-const gutterSize=3;
+const anArrayPosition=[0,25,35,50,60,70,80,100];
+const gutterSize=2;
 let preOrient='';
 let elem = document.documentElement;
 
@@ -35,16 +35,24 @@ function setupGridSplit ()
 
     const split = Split({
         columnMinSize: 0,
+        onDragStart: function () {
+        $('.swipe-wrap').hide();
+            // kill swipe before draging
+      
+        },
         onDrag: function () {
-            let snapPercent;          
-            let theWidth =  $("#content-grid").width();
-            let position=$("#map").width();
-            let percent = parseInt(position/theWidth*100);
-            //snapPercent =checkClosestPosition(anArrayPosition,percent);
-            $('#messageLog').html(percent);
+           
+        // // kill swipe before draging
+        //     let snapPercent;          
+        //     let theWidth =  $("#content-grid").width();
+        //     let position=$("#map").width();
+        //     let percent = parseInt(position/theWidth*100);
+        //     //snapPercent =checkClosestPosition(anArrayPosition,percent);
+        //     $('#messageLog').html(percent);
         },
 
         onDragEnd: function (orient) {
+            $('.swipe-wrap').show();
             reDrawSplit(orient);
             // console.log(`drag end`);
             // console.log(orient);

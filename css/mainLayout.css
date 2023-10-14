@@ -194,11 +194,11 @@
 } */
 
 #ajax-loader {
-    width: 250px;
-    height: 250px;
+    width: 25px;
+    height: 25px;
     position: absolute;
-    top: calc(50% - 25px);
-    left: calc(50% - 25px);
+    top: calc(50% - 12px);
+    left: calc(50% - 12px);
     z-index: 1000;
     display: none;
 }
