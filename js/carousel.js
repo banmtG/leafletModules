@@ -308,7 +308,7 @@ function adjustDotCarousel(theDotCarousel,position,length)
       //  console.log(i);
     });
     let i_next1= [];
-    let size1= "8px";
+    let size1= "7px";
     let i_next2= [];
     let size2= "5px";
     let i_next3= [];
@@ -358,8 +358,8 @@ function adjustDotCarousel(theDotCarousel,position,length)
         theDotCarousel.childNodes[i_next3[i]].style.fontSize = size3;
     }
 
-    theDotCarousel.childNodes[position].style.opacity = 0.9;
-    theDotCarousel.childNodes[position].style.fontSize = "10px";
+    theDotCarousel.childNodes[position].style.opacity = 1;
+    theDotCarousel.childNodes[position].style.fontSize = "9px";
     theDotCarousel.childNodes[position].classList.add('theNode');
 }
 
